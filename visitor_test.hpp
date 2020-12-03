@@ -1,38 +1,33 @@
-#ifndef _VISITOR_TEST_HPP
-#define _VISITOR_TEST_HPP
+#ifndef __VISITOR_TEST_HPP__
+#define __VISITOR_TEST_HPP__
 
-#include <iostream>
-using namespace std;
-#include <vector>
-#include <list>
-
-#include "op.hpp"
+#include "div.hpp"
+#include "pow.hpp"
 #include "sub.hpp"
 #include "add.hpp"
-#include "div.hpp"
 #include "mult.hpp"
+#include "rand.hpp"
+#include "gtest/gtest.h"
 #include "visitor.hpp"
-#include "iterator.hpp"
-#include "container.hpp"
 
-TEST(CountVisitorTest, SimpleTree1) {
-  Op* op1 = new Op(3);
-  Op* op2 = new Op(5);
-  Op* op3 = new Op(2);
-  Op* op4 = new Op(1);
-	Sub* first = new Sub( op1, op2);
-	Div* second = new Div( op3, op4);
+TEST(VisitorTest, VisitorTest1){
+	CountVisitor *visitor = new CountVisitor();
+	Base *num1 = new Op(8);
+	Base *num2 = new Op(4);
+	
+	num1->accept(visitor);
+	EXPECT_EQ(visitor->op_count(), 1);
+	num2->accept(visitor);
+	EXPECT_EQ(visitor->op_count() , 2);
 
-	Add* dummy = new Add(first,second);
-	CountVisitor *test1 = new CountVisitor();
-	PreorderIterator *test2 = new PreorderIterator(dummy);
-	test2->first();
-	while(test2->is_done() == false){
-	    test2->current()->accept(test1);
-	    test2->next();
-	}
-	EXPECT_EQ(test1->sub_count(), 1);
-	EXPECT_EQ(test1->div_count(), 1);
-	EXPECT_EQ(test1->op_count(), 4);
+	Base* temp1 = new Sub(num1, num2);
+	Base* temp2 = new Div(num1, num2);
+	
+	temp1->accept(visitor);
+	temp2->accept(visitor);
+
+	EXPECT_EQ(visitor->op_count(), 2);
+	EXPECT_EQ(visitor->sub_count(), 1);
 }
+
 #endif

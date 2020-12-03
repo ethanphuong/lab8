@@ -4,6 +4,7 @@
 #include "op.hpp"
 #include "base.hpp"
 #include "iterator.hpp"
+#include "visitor.hpp"
 
 class Mult: public Base{
 protected:
@@ -48,5 +49,10 @@ public:
 		Iterator* it = new BinaryIterator(this);
      		return it;
      	}
+	
+	void accept(CountVisitor* vis) 
+	{
+		vis->visit_mult();
+	}
 };
 #endif

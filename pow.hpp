@@ -4,6 +4,7 @@
 #include "base.hpp"
 #include "op.hpp"
 #include <math.h>
+#include "visitor.hpp"
 
 class Pow: public Base{
 protected:

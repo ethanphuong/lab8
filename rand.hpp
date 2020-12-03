@@ -2,12 +2,12 @@
 #define __RANDOM_HPP__
 
 #include "base.hpp"
-#include <stdlib.h>
-#include <time.h>
-#include <iostream>
+#include <string>
+#include "iterator.hpp"
+#include "visitor.hpp"
 
 class Random : public Base {
-    protected:
+    private:
 	double randomNumber;
 	std::string stringNumber;
     public:

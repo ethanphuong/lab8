@@ -50,5 +50,10 @@ public:
 		Iterator* it = new BinaryIterator(this);
      		return it;
      	}
+	
+	void accept(CountVisitor* vis) 
+	{
+		vis->visit_div();
+	}
 };
 #endif

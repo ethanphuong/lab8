@@ -3,6 +3,7 @@
 
 #include "base.hpp"
 #include "iterator.hpp"
+#include "visitor.hpp"
 
 class Op : public Base {
     protected:
@@ -39,6 +40,10 @@ class Op : public Base {
 		Iterator* it = new BinaryIterator(this);
      		return it;
      	}
+	void accept(CountVisitor* vis) 
+	{
+		vis->visit_op();
+	}
 };
 
 #endif //__OP_HPP__

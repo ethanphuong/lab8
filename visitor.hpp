@@ -14,7 +14,6 @@ class CountVisitor{
     public:
         CountVisitor() {};
 
-	
 	void visit_op() {
           ops++;
         };
@@ -57,6 +56,6 @@ class CountVisitor{
         int pow_count() {
           return pow;
         };
-;
+};
 
 #endif //__COUNT_VISITOR_HPP__
