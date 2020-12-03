@@ -15,7 +15,7 @@ class CountVisitor{
         CountVisitor() {};
 
 	
-	visit_op() {
+	void visit_op() {
           ops++;
         };
         int op_count() {

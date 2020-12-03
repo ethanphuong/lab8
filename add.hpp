@@ -4,6 +4,8 @@
 #include "base.hpp"
 #include "op.hpp"
 
+#include "iterator.hpp"
+
 class Add: public Base{
 protected:
 	double lhs, rhs, addAnswer;
@@ -40,14 +42,10 @@ public:
 	{	
 		return right_child;
 	}
-	Iterator* create_iterator()
+	virtual Iterator* create_iterator()
 	{
 		Iterator* it = new BinaryIterator(this);
      		return it;
      	}
-     	void accept(CountVisitor* vis) 
-	{
-     		vis->visit_add();
-    	}
+};
 #endif
-

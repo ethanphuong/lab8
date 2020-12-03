@@ -1,8 +1,9 @@
 #ifndef __MULT_HPP__
 #define __MULT_HPP__
 
-#include "base.hpp"
 #include "op.hpp"
+#include "base.hpp"
+#include "iterator.hpp"
 
 class Mult: public Base{
 protected:
@@ -41,14 +42,11 @@ public:
 	{	
 		return right_child;
 	}
-	Iterator* create_iterator()
+	
+	virtual Iterator* create_iterator()
 	{
 		Iterator* it = new BinaryIterator(this);
      		return it;
      	}
-     	void accept(CountVisitor* vis) 
-	{
-     		vis->visit_mult();
-    	}
 };
 #endif

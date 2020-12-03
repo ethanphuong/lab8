@@ -4,6 +4,9 @@
 #include "base.hpp"
 #include "op.hpp"
 
+#include "iterator.hpp"
+#include "visitor.hpp"
+
 class Sub: public Base{
 protected:
 	double lhs, rhs, subAnswer;
@@ -41,15 +44,11 @@ public:
 	{	
 		return right_child;
 	}
-	Iterator* create_iterator()
+	
+	virtual Iterator* create_iterator()
 	{
 		Iterator* it = new BinaryIterator(this);
      		return it;
      	}
-     	void accept(CountVisitor* vis) 
-	{
-     		vis->visit_sub();
-    	}
 };
 #endif
-

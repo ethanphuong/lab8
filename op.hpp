@@ -2,6 +2,7 @@
 #define __OP_HPP__
 
 #include "base.hpp"
+#include "iterator.hpp"
 
 class Op : public Base {
     protected:
@@ -32,15 +33,12 @@ class Op : public Base {
 	{
 		return nullptr;
 	}
-        Iterator* create_iterator() 
+	
+	virtual Iterator* create_iterator()
 	{
-        	Iterator* it = new NullIterator(this);
-        	return it;
-        }
-        void accept(CountVisitor* vis) 
-	{
-        vis->visit_op();
-        }
+		Iterator* it = new BinaryIterator(this);
+     		return it;
+     	}
 };
 
 #endif //__OP_HPP__
