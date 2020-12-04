@@ -2,9 +2,8 @@
 #define __ITERATOR_HPP__
 
 #include <stack>
-
-#include "../lab03/base.hpp"
-#include "../lab04/container.hpp"
+#include "container.hpp"
+#include "base.hpp"
 
 class Base;
 
