@@ -9,6 +9,7 @@
 #include "rand.hpp"
 #include "gtest/gtest.h"
 #include "visitor.hpp"
+#include "iterator.hpp"
 
 TEST(VisitorTest, VisitorTest1){
 	CountVisitor *visitor = new CountVisitor();
@@ -30,4 +31,30 @@ TEST(VisitorTest, VisitorTest1){
 	EXPECT_EQ(visitor->sub_count(), 1);
 }
 
+
+
+TEST(VisitorIteratorTest, Test1)
+{
+	 Base* num1 = new Op(3);
+        Base* num2 = new Op(7);
+	Base* num3 = new Op(4);
+        Pow* temp = new Pow(num1, num2);
+	Pow* temp2 = new Pow(num3,temp);
+        Base* dummy = new Add(num2, temp2);
+
+         CountVisitor *visit = new CountVisitor();
+	Iterator *it = dummy->create_iterator();
+	
+	it->first();
+	while(!it->is_done())
+	{
+	Base*Phold = it->current();
+	Phold->accept(visit);
+	it->next();
+	}
+	
+        EXPECT_EQ(visit->op_count(),1);
+        EXPECT_EQ(visit->add_count(),0);
+	EXPECT_EQ(visit->pow_count(),1);
+}
 #endif
